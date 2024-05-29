@@ -186,13 +186,52 @@ document.addEventListener('DOMContentLoaded', () => {
 
 });
 
+const Notes=document.querySelector('.take-note');
+const NoteBrowse=document.querySelector('.browse-note');
+const Dashboard=document.querySelector('.files-display');
+const Files=document.querySelector('.downloads');
+const PlayDisplay=document.querySelector('.mid-panel');
+const Chapters=document.querySelector('.right-panel');
 
 
 function getNote() {
-    // Assuming this function is supposed to do something with an element with id 'note'
-    const Notes=document.querySelector('Take-note');
     if (Notes) {
         Notes.classList.add('active');
+        NoteBrowse.classList.add('active');
+        Dashboard.classList.remove('active');
+        Files.classList.remove('active');
+        PlayDisplay.classList.remove('active');
+        Chapters.classList.remove('active');
+
+    } else {
+        console.error('Element with id "note" not found');
+    }
+}
+
+
+
+function getDashboard() {
+    if (Notes) {
+        Notes.classList.remove('active');
+        NoteBrowse.classList.remove('active');
+        Dashboard.classList.add('active');
+        Files.classList.add('active');
+        PlayDisplay.classList.remove('active');
+        Chapters.classList.remove('active');
+
+    } else {
+        console.error('Element with id "note" not found');
+    }
+}
+function getPlaying() {
+    if (Notes) {
+        Notes.classList.remove('active');
+        NoteBrowse.classList.remove('active');
+        Dashboard.classList.remove('active');
+        Files.classList.remove('active');
+        PlayDisplay.classList.add('active');
+        Chapters.classList.add('active');
+
     } else {
         console.error('Element with id "note" not found');
     }

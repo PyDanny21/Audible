@@ -28,11 +28,11 @@
     </nav>
     <section class="main">
         <div class="left-panel p-3 lg-rounded col-md-4">
-            <div class="home mt-3 mb-3">
-                <span class="text-start text-decoration-none" id="dashboard-menu"><span><i class="fa fa-home me-3"></i></span><span class="h6">Dashboard</span></a>
+            <div class="home mt-3 mb-3" onclick="getDashboard()" style="cursor: pointer;">
+                <span class="text-start text-decoration-none" id="dashboard-menu"><span><i class="fa fa-chess-board me-3"></i></span><span class="h6">Dashboard</span></a>
             </div>
-            <div class="files">
-                <a href="#" class="text-start text-decoration-none" id="file-menu"><span><i class="fa fa-box me-3"></i></span><span class="h6">Files</span></a>
+            <div class="files" onclick="getPlaying()">
+                <span style="cursor: pointer;" class="text-start text-decoration-none" id="file-menu"><span><i class="fa fa-music me-3"></i></span><span class="h6">Playing</span></a>
             </div>
             <div class="notes mt-3" onclick="getNote()">
                 <span class="text-start text-decoration-none" id="note-menu" style="cursor: pointer;"><span><i class="fa fa-book me-3"></i></span><span class="h6">Notes</span></a>
@@ -126,7 +126,7 @@
                 <textarea name="notepad" id="notepad" class="row col-12 p-2 rounded" rows="20" placeholder="Write note here" style="outline: none;height: 100%;resize: none;" disabled></textarea>
             </div>
         </div>
-        <div class="files-display p-3">
+        <div class="files-display p-3 active" >
             <span style="font-size: medium;cursor: pointer;width: 30px;height: 30px;display: flex;align-items: center;justify-content: center;"><i class="fa fa-arrow-left"></i></span><br>
             <span class="h3 mb-4 ms-4">Good morning Fred,</span>
                 
@@ -225,7 +225,7 @@
                 <p class="ms-2"><span class="text-primary">20:45</span><span class="ms-5 text-primary"><i class="fa fa-check"></i> Completed</span></p>
             </div>
         </div>
-        <div class="downloads p-4">
+        <div class="downloads p-4 active">
             <span class="fw-bold">My Files</span>
             <div class="search p-1 ps-3 pe-2 d-flex col-12 border mx-auto rounded-5 mt-4 mb-4">
                 <input type="search" name="search" id="search" placeholder="Search for files here" class="search" style="width: 95%;border: none;outline: none;">

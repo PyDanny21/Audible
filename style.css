@@ -161,9 +161,6 @@
     display: none;
 }
 
-.active{
-    display: block;
-}
 .mid-panel .text{
     font-size: 20px;
     padding:10px 40px;
@@ -180,9 +177,7 @@
     display: none;
     min-height: 80vh;
 }
-.files-display,.downloads{
-    display: block;
-}
+
 .browse-note .note-item:hover{
     background-color: rgba(51, 51, 51,0.2);
 }
@@ -212,4 +207,8 @@ p,span,a{
 .settings .logout:hover{
     background: red;
     color: #fff;
+}
+
+.active{
+    display: block;
 }
