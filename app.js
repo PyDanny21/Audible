@@ -1,5 +1,13 @@
 const close=document.querySelector('.close');
 const Profile=document.querySelector('.profile');
+const Notes=document.querySelector('.take-note');
+const NoteBrowse=document.querySelector('.browse-note');
+const Dashboard=document.querySelector('.files-display');
+const Files=document.querySelector('.downloads');
+const PlayDisplay=document.querySelector('.mid-panel');
+const Chapters=document.querySelector('.right-panel');
+const Menu=document.querySelector('.left-panel');
+
 
 close.onclick=()=>{document.querySelector('.settings').style.display='none';}
 Profile.onclick=()=>{document.querySelector('.settings').style.display='flex';}
@@ -131,6 +139,11 @@ document.addEventListener('DOMContentLoaded', () => {
         textDisplay.style.fontSize=font+'px';
     });
 
+    if (window.innerWidth>900) {
+        Menu.classList.add('active');
+        Files.classList.add('active');
+    };
+
     // Chart.js initialization
     const yValues = [0,10,40,34,50,19,66,78,23,90,100];
     const xValues = ['M','T','W','T','F','S','S'];
@@ -186,16 +199,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
 });
 
-const Notes=document.querySelector('.take-note');
-const NoteBrowse=document.querySelector('.browse-note');
-const Dashboard=document.querySelector('.files-display');
-const Files=document.querySelector('.downloads');
-const PlayDisplay=document.querySelector('.mid-panel');
-const Chapters=document.querySelector('.right-panel');
-
 
 function getNote() {
-    if (Notes) {
+    if (window.innerWidth>900) {
         Notes.classList.add('active');
         NoteBrowse.classList.add('active');
         Dashboard.classList.remove('active');
@@ -204,14 +210,33 @@ function getNote() {
         Chapters.classList.remove('active');
 
     } else {
-        console.error('Element with id "note" not found');
+        Notes.classList.add('active');
+        NoteBrowse.classList.remove('active');
+        Menu.classList.remove('active');
+        Dashboard.classList.remove('active');
+        Files.classList.remove('active');
+        PlayDisplay.classList.remove('active');
+        Chapters.classList.remove('active');
     }
-}
+};
+
+function Back() {
+    if (window.innerWidth<=900) {
+        Menu.classList.add('active');
+        Notes.classList.remove('active');
+        NoteBrowse.classList.remove('active');
+        Dashboard.classList.remove('active');
+        Files.classList.remove('active');
+        PlayDisplay.classList.remove('active');
+        Chapters.classList.remove('active');
+
+    }
+};
 
 
 
 function getDashboard() {
-    if (Notes) {
+    if (window.innerWidth>900) {
         Notes.classList.remove('active');
         NoteBrowse.classList.remove('active');
         Dashboard.classList.add('active');
@@ -220,21 +245,87 @@ function getDashboard() {
         Chapters.classList.remove('active');
 
     } else {
-        console.error('Element with id "note" not found');
+        Notes.classList.remove('active');
+        NoteBrowse.classList.remove('active');
+        Dashboard.classList.add('active');
+        Files.classList.remove('active');
+        PlayDisplay.classList.remove('active');
+        Chapters.classList.remove('active');
+        Menu.classList.remove('active');
     }
-}
+};
+
 function getPlaying() {
-    if (Notes) {
+    if (window.innerWidth>900) {
         Notes.classList.remove('active');
         NoteBrowse.classList.remove('active');
         Dashboard.classList.remove('active');
         Files.classList.remove('active');
         PlayDisplay.classList.add('active');
         Chapters.classList.add('active');
+        
 
     } else {
-        console.error('Element with id "note" not found');
-    }
+        Notes.classList.remove('active');
+        NoteBrowse.classList.remove('active');
+        Dashboard.classList.remove('active');
+        Files.classList.remove('active');
+        PlayDisplay.classList.add('active');
+        Chapters.classList.remove('active');
+        Menu.classList.remove('active');
+       }
+};
+function getChapters() {
+    if (window.innerWidth>900) {
+        console.log('nothing executed');
+    } else {
+        Notes.classList.remove('active');
+        NoteBrowse.classList.remove('active');
+        Dashboard.classList.remove('active');
+        Files.classList.remove('active');
+        PlayDisplay.classList.remove('active');
+        Chapters.classList.add('active');
+        Menu.classList.remove('active');
+       }
+};
+function getFiles() {
+    if (window.innerWidth>900) {
+        console.log('nothing executed');
+    } else {
+        Notes.classList.remove('active');
+        NoteBrowse.classList.remove('active');
+        Dashboard.classList.remove('active');
+        Files.classList.add('active');
+        PlayDisplay.classList.remove('active');
+        Chapters.classList.remove('active');
+        Menu.classList.remove('active');
+       }
+};
+function getBrowsenote() {
+    if (window.innerWidth>900) {
+        console.log('nothing executed');
+    } else {
+        Notes.classList.remove('active');
+        NoteBrowse.classList.add('active');
+        Dashboard.classList.remove('active');
+        Files.classList.remove('active');
+        PlayDisplay.classList.remove('active');
+        Chapters.classList.remove('active');
+        Menu.classList.remove('active');
+       }
+};
+
+function getMenu() {
+    if (window.innerWidth<=900) {
+        Menu.classList.add('active');
+        Dashboard.classList.remove('active');
+    };
+};
+
+
+function save() {
+    const notepad=document.getElementById('notepad');
+    const disable=notepad.attributes.getNamedItem('disabled');
+    // console.log(disable);
+    // notepad.setAttribute(disable,'disabled')
 }
-
-

@@ -18,10 +18,10 @@
     <nav class="navbar bg-primary">
         <div class="container">
             <a href="/" class="navbar-brand border text-light rounded bg-primary p-2 fw-bold"><span class="text-light">AUDIBLE</span></a>
-            <div class="col-1 d-flex align-items-center" style="cursor: pointer;">
+            <div class="col-lg-1 d-flex align-items-center" style="cursor: pointer;">
                 <img src="img/1.jpg" alt="Profile" class="mx-auto border rounded-circle profile" width="40px" height="40px">
                 <div class="text-right ms-2 text-dark rounded-5 bg-light" id="darkMode" style="width: 30px;height: 30px;display: flex;align-items: center;justify-content: center;">
-                    <span class="fw-bold d-flex align-items-center justify-content-center" id="darkToggle"><i class="fa fa-moon"></i></span>
+                    <span class="fw-bold d-lg-flex align-items-center justify-content-center" id="darkToggle"><i class="fa fa-moon"></i></span>
                 </div>
             </div>
         </div>      
@@ -36,6 +36,9 @@
             </div>
             <div class="notes mt-3" onclick="getNote()">
                 <span class="text-start text-decoration-none" id="note-menu" style="cursor: pointer;"><span><i class="fa fa-book me-3"></i></span><span class="h6">Notes</span></a>
+            </div>
+            <div class="notes mt-3" onclick="getFiles()">
+                <span class="text-start text-decoration-none" id="note-menu" style="cursor: pointer;"><span><i class="fa fa-book me-3"></i></span><span class="h6">Files</span></a>
             </div>
             <div class="recent mt-3">
                 <span class="text">Recently Played</span>
@@ -87,12 +90,12 @@
                         <span class="text-center ms-3 fw-bolder">Computer Science</span>
                     </div>
                 </a>
-                <a href="#" class="text-center text-decoration-none text-primary d-flex align-items-center justify-content-center mt-2">See more</a>       
+                <a href="#" class="text-center text-decoration-none text-primary d-flex align-items-center justify-content-start mt-2">See more</a>       
             </div>
         </div>
         <div class="mid-panel p-3">
             <div class="header d-flex align-items-center" style="height: 50px; width: 100%;z-index: 999;justify-content: space-between;">
-                <span class="d-flex align-items-center justify-content-center p-3" style="background: #b2b0b0; cursor: pointer; width: 30px;height: 30px; border-radius: 50%;"><i class="fa fa-less-than text-light"></i></span>
+                <span onclick="Back()" class="d-flex align-items-center justify-content-center p-3" style="background: #b2b0b0; cursor: pointer; width: 30px;height: 30px; border-radius: 50%;"><i class="fa fa-arrow-left text-light"></i></span>
                 <div class="right-btn d-flex align-items-center">
                     <div class="font-size m-2">
                         
@@ -100,8 +103,8 @@
                         <span class="m-1" id="value"></span>
                         <span class="m-1" style="cursor: pointer;" id="increase"><i class="fa fa-plus"></i></span>
                     </div>
-                    <button class="btn border fw-bolder m-3" style="border-radius: 20px;"><i class="fa fa-file"></i> Take Note</button>
-                    <button class="btn btn-primary border fw-bolder" style="border-radius: 20px;"><i class="fa fa-book"></i> Chapters</button>
+                    <button class="btn border fw-bolder m-3" style="border-radius: 20px;" onclick="getNote()"><i class="fa fa-file"></i> Take Note</button>
+                    <button class="btn btn-primary border fw-bolder" style="border-radius: 20px;" onclick="getChapters()"><i class="fa fa-book"></i> Chapters</button>
                 </div>
             </div>
             <p class="text-start text" id="exT">
@@ -115,33 +118,33 @@
         </div>
         <div class="take-note p-3" style="min-height: 80vh;">
             <div class="take-note-heading d-flex" style="width: 100%;height: 50px;align-items: center;justify-content: space-between;">
-                <span class="d-flex align-items-center justify-content-center p-3" style="background: #b2b0b0; cursor: pointer; width: 30px;height: 30px; border-radius: 50%;"><i class="fa fa-less-than text-light"></i></span>
+                <span onclick="Back()" class="d-flex align-items-center justify-content-center p-3" style="background: #b2b0b0; cursor: pointer; width: 30px;height: 30px; border-radius: 50%;"><i class="fa fa-arrow-left text-light"></i></span>
                 <div>
-                    <button class="btn btn-light ps-3 pe-3 fw-bold me-3 border" style="border-radius: 20px;"><i class="fa fa-edit"></i></button>
-                    <button class="btn btn-light ps-3 pe-3 fw-bold me-3 border" style="border-radius: 20px;"><i class="fa fa-save"></i></button>
-                    <button class="btn btn-primary ps-3 pe-3 fw-bold" style="border-radius: 20px;width: fit-content;"><i class="fa fa-book"></i></button>
+                    <button class="btn btn-light ps-3 pe-3 fw-bold me-3 border" style="border-radius: 20px;" onclick="edit()"><i class="fa fa-edit"></i></button>
+                    <button class="btn btn-light ps-3 pe-3 fw-bold me-3 border" style="border-radius: 20px;" onclick="save()"><i class="fa fa-save"></i></button>
+                    <button class="btn btn-primary ps-3 pe-3 fw-bold" style="border-radius: 20px;width: fit-content;" onclick="getBrowsenote()"><i class="fa fa-book"></i></button>
                 </div>
             </div>
             <div class="take-note-text mt-3" style="margin: auto; height: 100%;">
-                <textarea name="notepad" id="notepad" class="row col-12 p-2 rounded" rows="20" placeholder="Write note here" style="outline: none;height: 100%;resize: none;" disabled></textarea>
+                <textarea name="notepad" id="notepad" class="row-lg col-lg-12 p-2 rounded" rows="20" placeholder="Write note here" style="outline: none;width: 100%;height: 100%;resize: none;"></textarea>
             </div>
         </div>
         <div class="files-display p-3 active" >
-            <span style="font-size: medium;cursor: pointer;width: 30px;height: 30px;display: flex;align-items: center;justify-content: center;"><i class="fa fa-arrow-left"></i></span><br>
+            <span style="font-size: medium;cursor: pointer;width: 30px;height: 30px;display: flex;align-items: center;justify-content: center;" onclick="getMenu()"><i class="fa fa-arrow-left"></i></span>
             <span class="h3 mb-4 ms-4">Good morning Fred,</span>
                 
-            <div class="container-fluid d-flex m-0 p-0" style="align-items: center;justify-content: space-evenly;">
-                <div class="track rounded-2 bg-success col-3 my-5 mx-3 p-3 fw-bold">
+            <div class="container-fluid d-lg-flex m-0 p-0" style="align-items: center;justify-content: space-evenly;">
+                <div class="track rounded-2 bg-success col-lg-3 col-md-12 my-5 mx-3 p-3 fw-bold">
                     <p class="text text-center text-light" style="color: #fff;">Progress</p>
                     <p class="text text-center text-light mb-0" style="width: 100%;">66%</p>
                 </div>
-                <div class="chart-container rounded-2 bg-warning col-3 my-5 mx-3 p-1 fw-bold">
-                    <canvas id="myChart"></canvas>
+                <div class="chart-container rounded-2 bg-warning col-lg-3 col-md-12 my-5 mx-3 p-1 fw-bold">
+                    <canvas id="myChart" class="col-md-12"></canvas>
                     <!-- <p class="text text-center text-light" style="color: #fff;">Chart</p>
                     <p class="text text-center text-light mb-0" style="width: 100%;">56%</p> -->
                     
                 </div>
-                <div class="track rounded-2 bg-primary col-3 my-5 mx-3 p-3 fw-bold">
+                <div class="track rounded-2 bg-primary col-lg-3 my-5 mx-3 p-3 fw-bold">
                     <p class="text text-center text-light" style="color: #fff;">Point</p>
                     <p class="text text-center text-light mb-0" style="width: 100%;">200 SP</p>
                 </div>
@@ -180,7 +183,7 @@
             </a>
         </div>
         <div class="browse-note p-4">
-            <p class="h5 mb-3">Saved Notes</p>
+            <p class="h5 mb-3"><span style="font-size: medium;cursor: pointer;width: 30px;height: 30px;display: flex;align-items: center;justify-content: center;" onclick="getNote()"><i class="fa fa-arrow-left"></i></span> Saved Notes</p>
             <p  class="note-item m-0" style="border-radius: 20px;height: 40px;"><a href="#" class="text-start ps-4" style="width: 100%;height: 100%;display: flex;align-items: center; text-decoration: none;"><i class="fa fa-file me-3"></i> <span>Introduction to Computing</span></a></p>
             <p  class="note-item m-0" style="border-radius: 20px;height: 40px;"><a href="#" class="text-start ps-4" style="width: 100%;height: 100%;display: flex;align-items: center; text-decoration: none;"><i class="fa fa-file me-3"></i> <span>Introduction to Computing</span></a></p>
             <p  class="note-item m-0" style="border-radius: 20px;height: 40px;"><a href="#" class="text-start ps-4" style="width: 100%;height: 100%;display: flex;align-items: center; text-decoration: none;"><i class="fa fa-file me-3"></i> <span>Introduction to Computing</span></a></p>
@@ -195,7 +198,7 @@
             <p  class="note-item m-0" style="border-radius: 20px;height: 40px;"><a href="#" class="text-start ps-4" style="width: 100%;height: 100%;display: flex;align-items: center; text-decoration: none;"><i class="fa fa-file me-3"></i> <span>Introduction to Computing</span></a></p>
         </div>
         <div class="right-panel p-4">
-            <h5 class="fw-bolder mb-3">Chapters</h3>
+            <h5 class="fw-bolder mb-3 d-flex"><span style="font-size: medium;cursor: pointer;width: 30px;height: 30px;display: flex;align-items: center;justify-content: center;" onclick="getPlaying()"><i class="fa fa-arrow-left"></i></span> Chapters</h3>
             <div class="chapter" style="border-bottom: 1px solid lightgray; width: 100%;height: fit-content;">
                 <p class="mb-0"><span class="fw-bolder">Chapter 1 : </span> <span  style="font-weight: 500;">Introduction to Python</span></p>
                 <p class="ms-2"><span class="text-primary">00:45</span><span class="ms-5 text-primary"><i class="fa fa-check"></i> Completed</span></p>
@@ -225,8 +228,8 @@
                 <p class="ms-2"><span class="text-primary">20:45</span><span class="ms-5 text-primary"><i class="fa fa-check"></i> Completed</span></p>
             </div>
         </div>
-        <div class="downloads p-4 active">
-            <span class="fw-bold">My Files</span>
+        <div class="downloads p-4">
+            <span class="fw-bold"><span style="font-size: medium;cursor: pointer;width: 30px;height: 30px;display: flex;align-items: center;justify-content: center;" onclick="getDashboard()"><i class="fa fa-arrow-left"></i></span> My Files</span>
             <div class="search p-1 ps-3 pe-2 d-flex col-12 border mx-auto rounded-5 mt-4 mb-4">
                 <input type="search" name="search" id="search" placeholder="Search for files here" class="search" style="width: 95%;border: none;outline: none;">
                 <button class="btn" style="border: none;outline: none;"><i class="fa fa-search"></i></button>
@@ -283,7 +286,7 @@
             </a>
         </div>
         <div class="audio container-fluid p-1" style="position: absolute;border-top-left-radius: 30px;border-top-right-radius: 30px; bottom: 0;left: 0; height: 80px;display: flex; align-items: center;">
-            <div class="audio-played d-flex align-items-center col-lg-3 p-2 ps-3 ms-3 pe-3" style="border-radius: 20px;box-shadow: 0 0 3px lightblue;">
+            <div class="audio-played d-lg-flex align-items-center col-lg-3 p-2 ps-3 ms-3 pe-3" style="border-radius: 20px;box-shadow: 0 0 3px lightblue;">
                 <div class="img m-1 me-3">
                     <img src="img/2.jpg" alt="" class="img rounded" width="40px" height="40px">
                 </div>
@@ -300,13 +303,13 @@
                     <input type="range" id="seek-bar" value="0" min="0" step="1" style="width: 100%;height: 100%;">
                     <span id="duration" class="ms-2">00:00</span>
                 </div>
-                <div class="additional-controls d-flex" style="justify-content: space-between;padding:5px 1rem;align-items: center;">
-                    <div class="controls" style="margin-left: 100px;">
-                        <button id="prev" class="control-btn btn p-1 ms-2 me-2" style="width: 45px;height: 45px; outline: none;border: none;border-radius: 50%; background-color: #b2b0b0;"><i class="fas fa-step-backward"></i></button>
-                        <button id="backward" class="control-btn btn p-1 ms-2 me-2" style="width: 45px;height: 45px; outline: none;border: none;border-radius: 50%; background-color: #b2b0b0;"><i class="fas fa-backward"></i></button>
-                        <button id="play-pause" class="control-btn btn p-1 ms-2 me-2 bg-primary" style="width: 45px;height: 45px;color: #ffff; outline: none;border: none;border-radius: 50%;"><i class="fas fa-play"></i></button>
-                        <button id="forward" class="control-btn btn p-1 ms-2 me-2" style="width: 45px;height: 45px; outline: none;border: none;border-radius: 50%; background-color: #b2b0b0;"><i class="fas fa-forward"></i></button>
-                        <button id="next" class="control-btn btn p-1 ms-2 me-2" style="width: 45px;height: 45px; outline: none;border: none;border-radius: 50%; background-color: #b2b0b0;"><i class="fas fa-step-forward"></i></button>
+                <div class="additional-controls d-flex" style="padding:5px 1rem;align-items: center;">
+                    <div class="controls">
+                        <button id="prev" class="control-btn btn p-1 mx-lg-2" style="width: 45px;height: 45px; outline: none;border: none;border-radius: 50%; background-color: #b2b0b0;"><i class="fas fa-step-backward"></i></button>
+                        <button id="backward" class="control-btn btn p-1 mx-lg-2" style="width: 45px;height: 45px; outline: none;border: none;border-radius: 50%; background-color: #b2b0b0;"><i class="fas fa-backward"></i></button>
+                        <button id="play-pause" class="control-btn btn p-1 mx-lg-2 bg-primary" style="width: 45px;height: 45px;color: #ffff; outline: none;border: none;border-radius: 50%;"><i class="fas fa-play"></i></button>
+                        <button id="forward" class="control-btn btn p-1 mx-lg-2" style="width: 45px;height: 45px; outline: none;border: none;border-radius: 50%; background-color: #b2b0b0;"><i class="fas fa-forward"></i></button>
+                        <button id="next" class="control-btn btn p-1 mx-lg-2" style="width: 45px;height: 45px; outline: none;border: none;border-radius: 50%; background-color: #b2b0b0;"><i class="fas fa-step-forward"></i></button>
                     </div>
                     <div class="volume-control">
                         <i class="fas fa-volume-down"></i>
@@ -327,7 +330,7 @@
         </div>
     </section>
     <div class="settings" style="display: none;align-items: center; width: 100%;height: 100%;position: absolute; top: 0;left: 0;background: rgba(0, 0,0,0.3);">
-        <div class="container col-lg-3 p-4 rounded" id="settings" style="position: relative;">
+        <div class="container col-lg-3 col-md-8 p-4 rounded" id="settings" style="position: relative;">
             <h5 class="mb-4">Account</h5>
             <div class="set-user pb-3" style="border-bottom: 1px solid lightgray;">
                 <img src="img/3.jpg" class="img-responsive rounded-circle" width="50px" height="50px" alt="">
@@ -341,11 +344,14 @@
                 <li class="text ps-3" style="list-style: none;margin: 10px 0; height: 40px; border-radius: 20px;display: flex; align-items: center;cursor: pointer;">Subscriptions</li>
                 <li class="text ps-3" style="list-style: none;margin: 10px 0; height: 40px; border-radius: 20px;display: flex; align-items: center;cursor: pointer;">FAQ</li>
                 <li class="text ps-3" style="list-style: none;margin: 10px 0; height: 40px; border-radius: 20px;display: flex; align-items: center;cursor: pointer;">Contact us</li>
-                <li class="text logout fw-bold ps-3" style="list-style: none;margin: 10px 0; height: 40px; border-radius: 20px;display: flex; align-items: center;cursor: pointer;">Log Out</li>
-                <li class="text login fw-bold ps-3" style="list-style: none;margin: 10px 0; height: 40px; border-radius: 20px;display: flex; align-items: center;cursor: pointer;">Log In</li>
+                <!-- <li class="text logout fw-bold ps-3" style="list-style: none;margin: 10px 0; height: 40px; border-radius: 20px;display: flex; align-items: center;cursor: pointer;">Log Out</li> -->
+                <li class="text ps-3" style="list-style: none;margin: 10px 0; height: 40px; border-radius: 20px;display: flex; align-items: center;cursor: pointer;"><a href="login.html" style="text-decoration: none;color: #333;">Log In</a></li>
             </ul>
             <span class="close d-flex align-items-center justify-content-center fw-bolder" style="cursor: pointer; font-size: 20px; position: absolute;top:30px;right: 30px;width: 35px;height: 35px;border-radius: 50%;"><i class="fa fa-times"></i></span>
         </div>
+    </div>
+    <div class="upload-btn d-flex align-items-center justify-content-center bg-primary" style="width: 50px;height: 50px;position: fixed;bottom: 100px;right: 10px;border-radius: 50%;z-index: 999;">
+        <a href="upload.html" style="width: 100%;height: 100%;text-decoration: none;color: #fff;"><i class="fa fa-plus"></i></a>
     </div>
     <script src="bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>

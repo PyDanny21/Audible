@@ -141,12 +141,12 @@
     width: 20%;
     height: 100%;
     padding: 20px;
-    overflow-y: hidden;
+    overflow-y: scroll;
     max-height: 80vh;
     border-right: 1px solid lightgray;
     scrollbar-width: thin;
     scroll-behavior: smooth;
-    display: block;
+    display: none;
 }
 .mid-panel,.take-note,.files-display{
     width: 55%;
@@ -187,9 +187,13 @@ p,span,a{
 
 .audio.container-fluid.p-1{
     box-shadow: 0 0 3px var(--bs-body-color);
+    height: 80px;
 }
 .audio.container-fluid.p-1,.audio-played{
     background: var(--bs-body-bg);
+}
+.additional-controls{
+    justify-content: space-between;
 }
 
 .speed-control select, .search, #settings, .close, #notepad, .mid-panel{
@@ -211,4 +215,65 @@ p,span,a{
 
 .active{
     display: block;
+}
+.controls{
+    margin-left: 100px;
+}
+
+@media(max-width:900px){
+    .left-panel{
+        width: 100%;
+        /* display: none; */
+    }
+    .mid-panel,.take-note,.files-display{
+        width: 100%;
+    }
+    .mid-panel .text {
+        padding: 10px 5px;
+    }
+    .audio-played{
+        display: none;
+    }
+    .controls{
+        margin-left: -5px;
+        margin: auto;
+        
+    }
+    .controls button{
+        width: 40px;
+        height: 40px;
+        margin:0 10px;
+    }
+    .volume-control{
+        display: none;
+    }
+    select#speed{
+        width: 40px;
+    }
+    .settings .container{
+        width: 90%;
+    }
+    .right-panel,.downloads,.browse-note{
+        width: 100%;
+    }
+}
+
+@media(max-width:500px){
+    .controls{
+        width: 100%;
+        align-items: center;
+        display: flex;
+        justify-content: space-evenly;
+    }
+    .controls button{
+        width: 35px;
+        height: 35px;
+        margin: 0;
+    }
+    select#speed{
+        width: 30px;
+    }
+    .additional-controls{
+        justify-content: space-evenly;
+    }
 }
