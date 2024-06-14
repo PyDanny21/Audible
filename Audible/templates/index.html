@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,8 +12,8 @@
 
     <!-- bootstrap Icons -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" href="bootstrap-5.3.3-dist/css/bootstrap.css">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="{% static 'bootstrap-5.3.3-dist/css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
     <nav class="navbar bg-primary">
@@ -131,8 +132,7 @@
         </div>
         <div class="files-display p-3 active" >
             <span style="font-size: medium;cursor: pointer;width: 30px;height: 30px;display: flex;align-items: center;justify-content: center;" onclick="getMenu()"><i class="fa fa-arrow-left"></i></span>
-            <span class="h3 mb-4 ms-4">Good morning Fred,</span>
-                
+            <span class="h3 mb-4 ms-4">{{greet}}!</span>
             <div class="container-fluid d-lg-flex m-0 p-0" style="align-items: center;justify-content: space-evenly;">
                 <div class="track rounded-2 bg-success col-lg-3 col-md-12 my-5 mx-3 p-3 fw-bold">
                     <p class="text text-center text-light" style="color: #fff;">Progress</p>
@@ -334,7 +334,7 @@
             <h5 class="mb-4">Account</h5>
             <div class="set-user pb-3" style="border-bottom: 1px solid lightgray;">
                 <img src="img/3.jpg" class="img-responsive rounded-circle" width="50px" height="50px" alt="">
-                <span class="ms-2">quansahd74@gmail.com</span>
+                <span class="ms-2">{{user.email}} </span>
             </div>
             <ul style="width: 100%;" class="ps-1 mt-2">
                 <li class="text ps-3" style="list-style: none;margin: 10px 0; height: 40px; border-radius: 20px;display: flex; align-items: center;cursor: pointer;">Settings</li>
@@ -345,16 +345,20 @@
                 <li class="text ps-3" style="list-style: none;margin: 10px 0; height: 40px; border-radius: 20px;display: flex; align-items: center;cursor: pointer;">FAQ</li>
                 <li class="text ps-3" style="list-style: none;margin: 10px 0; height: 40px; border-radius: 20px;display: flex; align-items: center;cursor: pointer;">Contact us</li>
                 <!-- <li class="text logout fw-bold ps-3" style="list-style: none;margin: 10px 0; height: 40px; border-radius: 20px;display: flex; align-items: center;cursor: pointer;">Log Out</li> -->
-                <li class="text ps-3" style="list-style: none;margin: 10px 0; height: 40px; border-radius: 20px;display: flex; align-items: center;cursor: pointer;"><a href="login.html" style="text-decoration: none;color: #333;">Log In</a></li>
+                {% if request.user.is_authenticated %}
+                    <li class="text ps-3" style="list-style: none;margin: 10px 0; height: 40px; border-radius: 20px;display: flex; align-items: center;cursor: pointer;"><a href="{% url "signout" %}" style="text-decoration: none;color: #333;">Log out</a></li>
+                {% else %}
+                    <li class="text ps-3" style="list-style: none;margin: 10px 0; height: 40px; border-radius: 20px;display: flex; align-items: center;cursor: pointer;"><a href="{% url "signin" %}" style="text-decoration: none;color: #333;">Log In</a></li>
+                {% endif %}
             </ul>
             <span class="close d-flex align-items-center justify-content-center fw-bolder" style="cursor: pointer; font-size: 20px; position: absolute;top:30px;right: 30px;width: 35px;height: 35px;border-radius: 50%;"><i class="fa fa-times"></i></span>
         </div>
     </div>
     <div class="upload-btn" style="width: 50px;height: 50px;position: fixed;bottom: 100px;right: 10px;border-radius: 50%;z-index: 999;">
-        <a href="upload.html" class="d-flex align-items-center justify-content-center bg-primary rounded-circle fw-bold" style="width: 100%;height: 100%;text-decoration: none;color: #fff;"><i class="fa fa-plus"></i></a>
+        <a href="{% url "upload" %}" class="d-flex align-items-center justify-content-center bg-primary rounded-circle fw-bold" style="width: 100%;height: 100%;text-decoration: none;color: #fff;"><i class="fa fa-plus"></i></a>
     </div>
-    <script src="bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{% static 'bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js' %}"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="app.js"></script>
+    <script src="{% static 'js/app.js' %}"></script>
 </body>
 </html>

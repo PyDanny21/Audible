@@ -1,0 +1,66 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Audible | Signup</title>
+    <link rel="stylesheet" href="{% static 'css/signup.css' %}">
+    <link rel="stylesheet" href="{% static 'bootstrap-5.3.3-dist/css/bootstrap.min.css' %}">
+    <!-- Google fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+    <style>
+        .logo{
+            padding: 10px;
+        }
+    </style>
+    <div class="contain">
+        <div class="design bg-primary">
+            <div class="logo">
+                <div class="logo">
+                    <h3 class="text border text-light rounded bg-primary p-2 fw-bold mx-auto" style="width: fit-content;"><span class="text-light">AUDIBLE</span></a>
+                    <h5 class="mx-auto mb-2" style="width: fit-content;">Convert All Your PDF Files Into Audio Files</h3>
+                    <p>Our project converts pdf files to audio file so that our users can listen to their pdfs just by clicking on a play button for each</p>
+                </div>
+            </div>
+        </div>
+        <div class="fill-form">
+            <form action="" method="post">
+                {% csrf_token %}
+                <h3>Create Account Today</h3>
+                <label for="username">Full Name :</label>
+                <input type="text" name="username" id="username" required>
+                <label for="email">Email :</label>
+                <input type="email" name="email" id="email" required>
+                <label for="password">Create Password</label>
+                <input type="password" name="password" id="password" required>
+                <label for="password2">Confirm</label>
+                <input type="password" name="password2" id="password" required>
+                <p>
+                    <span >Show password
+                    </span>
+                    <input type="checkbox" name="show password" id="show">
+                </p>
+                {% for message in messages %}
+
+                <div class="alert alert-{{message.tags}} alert-dismissible fade show" role="alert">
+                  <strong>{{message}}</strong>
+                  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                {% endfor %}
+                <p id="terms">
+                    <input type="checkbox" name="" id="">
+                    <span>I agree with terms and conditions as well as privacy policy
+                    </span>
+                </p>
+                <button type="submit" class="bg-primary">Create Account</button>
+                <a href="{% url "signin" %}">Already have an account?</a>
+            </form>
+        </div>
+    </div>
+    <script src="{% static 'bootstrap-5.3.3-dist\js\bootstrap.bundle.min.js' %}"></script>
+</body>
+</html>
