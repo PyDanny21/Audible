@@ -64,7 +64,7 @@
             align-items: center;
             outline: none;
         }
-        input#pdfFile {
+        input#id_pdf_file {
             display: flex;
             width: 100%;
             height: 100%;
@@ -90,18 +90,16 @@
     <div class="uploadForm">
         <div class="form">
             <h4>Upload file</h4>
-            <form action="#" method="post">
-                <label for="filename">File Name</label>
-                <input type="text" placeholder="PDF filename" required>
-                <label for="file">PDF File</label>
-                <input type="file" name="pdfFile" id="pdfFile" required>
-                <label for="voices">Choose Voice</label>
+            <form action="#" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form.as_p }}
+                {% comment %} <label for="voices">Choose Voice</label>
                 <select name="voices" id="voices">
                     <option value="David">David</option>
                     <option value="David">Ariana</option>
                     <option value="David">Priscilla</option>
                     <option value="David">Mark</option>
-                </select>
+                </select> {% endcomment %}
                 <button type="submit" class="bg-primary">Convert to audio</button>
             </form>
         </div>

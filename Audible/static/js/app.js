@@ -52,34 +52,34 @@ document.addEventListener('DOMContentLoaded', () => {
     const volumeBar = document.getElementById('volume-bar');
     const speedSelect = document.getElementById('speed');
 
-    const playlist = ['MOGmusic-Elohim.mp3', 'file.mp3', 'audio3.mp3'];
-    let currentTrackIndex = 0;
+    // const playlist = ['MOGmusic-Elohim.mp3', 'file.mp3', 'audio3.mp3'];
+    // let currentTrackIndex = 0;
 
-    audio.src = playlist[currentTrackIndex];
+    // audio.src = playlist[currentTrackIndex];
 
-    playPauseBtn.addEventListener('click', () => {
-        if (audio.paused) {
-            audio.play();
-            playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
-        } else {
-            audio.pause();
-            playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
-        }
-    });
+    // playPauseBtn.addEventListener('click', () => {
+    //     if (audio.paused) {
+    //         audio.play();
+    //         playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
+    //     } else {
+    //         audio.pause();
+    //         playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
+    //     }
+    // });
 
-    prevBtn.addEventListener('click', () => {
-        currentTrackIndex = (currentTrackIndex - 1 + playlist.length) % playlist.length;
-        audio.src = playlist[currentTrackIndex];
-        audio.play();
-        playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
-    });
+    // prevBtn.addEventListener('click', () => {
+    //     currentTrackIndex = (currentTrackIndex - 1 + playlist.length) % playlist.length;
+    //     audio.src = playlist[currentTrackIndex];
+    //     audio.play();
+    //     playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
+    // });
 
-    nextBtn.addEventListener('click', () => {
-        currentTrackIndex = (currentTrackIndex + 1) % playlist.length;
-        audio.src = playlist[currentTrackIndex];
-        audio.play();
-        playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
-    });
+    // nextBtn.addEventListener('click', () => {
+    //     currentTrackIndex = (currentTrackIndex + 1) % playlist.length;
+    //     audio.src = playlist[currentTrackIndex];
+    //     audio.play();
+    //     playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
+    // });
 
     backwardBtn.addEventListener('click', () => {
         audio.currentTime = Math.max(0, audio.currentTime - 10);

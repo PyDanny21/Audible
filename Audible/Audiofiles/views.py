@@ -1,4 +1,4 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render,redirect,get_object_or_404
 from django.template.loader import render_to_string
 from django.http import HttpResponse
 from django.contrib import messages
@@ -12,10 +12,14 @@ from django.views.generic import View
 from django.contrib.sites.shortcuts import get_current_site
 from django.contrib.auth import authenticate,login,logout
 from django.contrib.auth.decorators import login_required
+import os
+from PyPDF2 import PdfReader
+import pyttsx3
+from .models import PDF_File
+from .forms import PDFUploadForm
 import datetime
 # getting token
 from .utils import generate_token,TokenGenerator
-
 import threading
 
 # Create your views here.
@@ -30,8 +34,10 @@ def index(request):
         else:
             return 'Good evening'
     time_now=time()
+    audio=PDF_File.objects.all()
     return render(request,'index.html',{
         'greet':time_now,
+        'audio':audio,
     })
 
 #threading
@@ -119,6 +125,56 @@ def signout(request):
     messages.success(request,'Logout successful')
     return redirect('signin')
 
-
+# Create your views here.
+# @login_required()
 def upload(request):
-    return render(request,'upload.html')
+    if request.method=='POST':
+        form=PDFUploadForm(request.POST,request.FILES)
+        if form.is_valid():
+            pdf_instance=form.save(commit=False)
+            # pdf_instance.user=request.user
+            pdf_file=request.FILES['pdf_file']
+            extraction=PdfReader(pdf_file)
+            text=''
+            for page in extraction.pages:
+                text+=page.extract_text()
+            #converting to audio
+            engine=pyttsx3.init('sapi5')
+            voices=engine.getProperty('voice')
+            # print(voices)
+            engine.setProperty('voice','HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Speech\Voices\Tokens\TTS_MS_EN-US_ZIRA_11.0')
+            audio_name=f'{pdf_instance.title}.mp3'
+            audio_path=os.path.join(settings.MEDIA_ROOT,f'Audio/',audio_name)
+            os.makedirs(os.path.dirname(audio_path),exist_ok=True)
+            engine.save_to_file(text,audio_path)
+            engine.runAndWait()
+
+            #save audio to model
+            pdf_instance.audio=f'Audio/{audio_name}'
+            pdf_instance.save()
+            return redirect('index')
+    else:
+        form=PDFUploadForm()
+    return render(request,'upload.html',{
+        'form':form
+    })
+    
+def listen(request,pk):
+    listen_audio=get_object_or_404(PDF_File,pk=pk)
+    greet_time=datetime.datetime.now().hour
+    def time():
+        if greet_time<12:
+            return 'Good morning'
+        elif greet_time<=16:
+            return 'Good afternoon'
+        else:
+            return 'Good evening'
+    time_now=time()
+    audio=PDF_File.objects.all()[0:5]
+    Allaudio=PDF_File.objects.all()[0:10]
+    return render(request,'index.html',{
+        'greet':time_now,
+        'audio':audio,
+        'Allaudio':Allaudio,
+        'listen':listen_audio,
+    })
